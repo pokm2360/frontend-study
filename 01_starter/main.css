@@ -1,8 +1,9 @@
 div {
   color:greenyellow;
-  
+  width: 150px;
 }
 
 span {
   color:aqua;
+  width: 190px;
 }

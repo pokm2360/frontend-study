@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 블록 요소는 상자(레이아웃)를 다루기 위한 요소 -->
+  <!-- 수직으로 쌓임, 가로는 부모 요소 크기만큼 100% 늘어남, 세로는 콘텐츠 크기만큼 줄어듦 -->
+  <div>hello</div><div>world</div>
+  <div>hello</div>
+  <div>world</div>
+<br>
+<!-- 상자는 가로/세로 길이 지정 가능(내용이 없으면 height가 0이 됨 - 높이 값 지정 or 내용작성)-->
+<div style="width: 100px; height: 50px; background-color: aqua;"></div>
+<div style="height: 40px; background-color: blueviolet;">world</div>
+<br>
+<!-- 상하/좌우 모든 여백 지정 가능 -->
+<div style="margin: 100px; background-color: yellow; color: red;">hello</div>
+<div style="padding: 100px; background-color: greenyellow;">world</div>
+<br>
+<!-- 블록 요소 안에 블록/인라인 요소 사용 가능 -->
+<div><div>div in div</div></div>
+<div><span>div in span</span></div>
+
+<!-- 제약 사항이 별로 없음 
+ => 글자에 스타일을 주는 경우 외에 시각적인 구조(레이아웃을 잡을 때는 주로 블록 요소 사용)
+    ㄴ글자에 주고 싶을 땐 인라인 요소(span)
+-->
+
+</body>
+</html>

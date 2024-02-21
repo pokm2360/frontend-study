@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- lang: 문서의 언어를 명시하는 속성 -->
+<html lang="ko">
+<head>
+  <!-- 문서의 정보는 <head> 태그 안에 작성 -->
+  <meta charset="UTF-8">
+  <!-- 사용하는 문자는 코드값으로 작성됨 -->
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+
+  <!-- 문서의 제목을 정의, 브라우저 탭에서 확인 -->
+  <title>Test</title>
+
+<!-- css, js 연결하기 -->
+<!-- 외부 스타일 시트 -->
+  <link rel="stylesheet" href="./css/main.css"> 
+  <!-- css는 주변폴더이므로 ./로 찾아가기, ./는 생략가능 -->
+
+<!-- 내부 스타일 시트 -->
+<style>
+  div{
+    text-decoration: underline;
+  }
+</style>
+<!-- 바로 쓰고싶으면 내부스타일시트 사용 style-div태그 안에 작성 -->
+
+<!-- 외부 스크립트 -->
+<script src="js/main.js"></script>
+
+<!-- 내부 스크립트 -->
+<script>
+  console.log('내부 스크립트');
+
+</script>
+
+</head>
+<body>
+  <!-- 사용자 눈에 보이는 구조는 <body> 태그 안에 작성 -->
+  <div>Hello world!</div>
+
+  <!-- 화면에 이미지 출력하기 -->
+  <!-- alt: 이미지가 출력되지 못하는 경우 대신 출력할 텍스트(대체 텍스트)
+    ex이미지 경로가 잘못되거나, 네트워크가 불안정하거나 등 이미지 대신 화면에 나올 글자
+    + 웹 접근성과 관련(스크린 리더가 alt 텍스트를 읽어줌)
+  -->
+  <!-- 상대 경로/절대 경로를 사용하여 이미지 출력하기 -->
+  <!-- / = 루트를 의미 -->
+  <img src="./images/logo.png" alt="로고">
+  <img src="/02_test/images/logo.png" alt="로고">
+
+
+  <!-- 블로그에서 로고 이미지 따오기 -->
+<img src="https://heropy.blog/css/images/logo.png" alt="로고">
+<!-- 웹사이트 주소도 절대경로 -->
+
+<!-- CSS로 배경 이미지 넣기 -->
+<div class="logo"></div>
+
+<!-- 페이지를 나누고 연결(링크) -->
+<!-- href: 다른 페이지로 이동할 수 있는 참조가 되는 경로를 입력 -->
+<a href="https://www.naver.com">NAVER</a>
+
+<a href="./about/about.html">about</a>
+<!-- index.html로 만들면 생략가능
+     브라우저가 해당 이름을 가진 파일을 우선적으로 찾아 실행하기 때문 -->
+<a href="./about">about</a>
+</body>
+</html>
+
+<!-- 개발자 도구 사용하기 -->
+<!-- 브라우저에서 제공하는 개발자 도구를 이용해서 웹사이트를 분석하고 
+     테스트 하는 방법 
+     f12 / 우클릭 - 검사
+     셀렉트 기능 단축키: ctrl + shift + c
+
+     1) elements 탭: html에 대한 정보를 확인
+    
+     2) styles 탭: 특정 html 요소에 어떤 스타일이 적용되었는지 css에 대한 정보를 확인
+        다른 스타일을 임시로 적용 가능(실제로 개발할 때 자주 사용)
+
+        여기서 임의로 적용한 스타일은 새로고침하면 다시 리셋됨
+        다른 사람이 만든 웹사이트에도 내가 원하는 스타일을 적용해 볼 수 있음
+
+     3) computed 탭: css 박스 모델과 함께 실제로 적용된 스타일 값만 모아서 볼 수 있음
+
+     4) console 탭: js를 다룰 때 주로 이용 (에러처리할 때)
+ -->
+
+
+

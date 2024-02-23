@@ -1,0 +1,13 @@
+<!-- git 추가
+
+git status 확인
+git add .
+git commit -m "변경내용"
+git push origin main
+
+git clone git주소 - 깃 내려받기
+
+터미널 - cd .. - 파일 밖으로
+
+git pull - 깃에 등록된 내용 가져오기
+ㄴ.git이 있는 폴더 경로에서 해야함!!! -->

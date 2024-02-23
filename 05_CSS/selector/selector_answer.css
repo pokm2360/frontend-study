@@ -19,7 +19,7 @@ aside a:nth-child(5) img {
 }
 
 /* 5. 62~77 라인의 <ul>태그에서 3번째 <li>을 선택하는 선택자를 작성(가상 클래스 선택자 필수) */
-.column-1 li:nth-child(3) {
+#detail_list >:nth-child(4) :nth-child(3) {
   border: 2px solid red;
 }
 

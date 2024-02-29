@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 공통 스타일은 앞부분에 작성 */
+    ul {
+      list-style: none;
+    }
+    ul li {
+      width: 60px;
+      background-color: whitesmoke; 
+      display: inline-block;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .container {
+      display: flex;
+      width: 800px;
+      margin: 0 auto;
+      /* 중요한거-가운데정렬 */
+    }
+    .blog-content {
+      display: flex;
+      background-color: white;
+      width: 80%;
+      height: 200px;
+      
+    }
+    .content-header {
+      display: flex;
+      align-items: center;
+    }
+    .content-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      
+    }
+    .content-body {
+      
+    }
+    .blog-img {
+      background-color: antiquewhite;
+      width: 20%;
+      height: 200px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- tip! 레이아웃을 만드는 기본
+    레이아웃은 항상 수평으로 자른 후 박스부터 만들고 시작하면 됨
+    그리고 박스들을 전부 div로 구현해 놓으면 됨(시맨틱 태그도 최대한 활용)
+    그리고 안에 글 넣고 그림 넣으면 끝
+
+    이 때 div는 블록 요소이기 때문에 위아래로 배치
+    좌우로 나란히 배치하고 싶으면 float()는 사용 x, inline-block(😉), flexbox(😊)
+  -->
+
+  <!-- navbar -->
+<nav>
+  <ul class="navbar">
+    <li>영화</li>
+    <li>맛집</li>
+    <li>IT</li>
+    <li>컴퓨터</li>
+  </ul>
+</nav>
+  <!-- blog list -->
+  <div class="container">
+    <div class="blog-content">
+      <div class="content-header">
+        <!-- 프로필 이미지 -->
+        <img src="./dog.jpg" alt="프로필" class="content-img">
+        
+        <!-- 작성자, 시간 -->
+        <div>
+          <h4>김경환</h4>
+          <div>2hours later</div>
+        </div>
+      <div class="content-body">
+        <!-- 글 제목, 글 내용 -->
+        <h4>어디로 갈까요</h4>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, voluptatum eum. Natus ad, doloribus quod illum maxime dolores aliquam consectetur laborum unde atque, maiores praesentium, explicabo ipsum quasi ab adipisci!
+        </p>
+      </div>
+    </div>
+    <div class="blog-img">
+      <!-- sample -->
+      <img src="./dog.jpg" alt="샘플">
+    </div>
+  </div>
+</body>
+</html>

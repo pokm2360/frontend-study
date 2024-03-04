@@ -67,7 +67,7 @@
     }
     .input-email:focus {
       border-color: blue;
-      transition: 0.1s;
+      transition: 1s linear;
     }
     .input-name {
       width: 100%;
@@ -85,7 +85,7 @@
     }*/
     .input-name:focus {
       border-color: blue;
-      transition: 0.1s linear;
+      transition: 1s linear;
     }
     .input-message {
       width: 100%;
@@ -97,7 +97,7 @@
     }
     .input-message:focus {
       border-color: blue;
-      transition: 0.1s ease-out linear;
+      transition: 1s linear;
     }
     .footer {
       display: flex;
@@ -187,8 +187,10 @@
       </div>
     </div>
     <div>
-      <p>Message</p>
+      <label>
+      Message
       <input type="text" class="input-message">
+    </label>
     </div>
     <!-- footer -->
       <div class="footer">

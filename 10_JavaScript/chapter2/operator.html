@@ -214,6 +214,14 @@
     result = dbData || '기본값';
     document.write(result, '<br>');
 
+    // (참고) null 병합 연산자(ES2020)
+    // nullish(null 계열의 값): null, undefined
+    // const inputName = 'goni';
+    // const inputName = null;
+    const inputName = ' ';
+    const nickName = inputName ?? 'Guest';
+    document.write(nickName, '<br>');
+
     // (심화 quiz)
     let aa; // false
     let bb = null;
@@ -223,6 +231,29 @@
     let ff = aa || bb || cc || dd || ee;
     // ff에 저장된 값은? 4
     document.write(ff, '<br>');
+
+    // 7. 삼항 연산자
+    // 조건에 따라 2개의 값 중 하나를 반환
+    // 조건식 ? 값1 : 값2;
+    document.write('<h2>삼항 연산자</h2>');
+    result = false ? 'javascript' : 'hello';
+    document.write(result, '<br>');
+
+    const score = 10;
+    result = score >= 90 ? 'a' : (score >= 80 ? 'b' : 'c');
+    document.write(result, '<br>');
+
+    // 홀짝 판별기
+    // window. prompt ('메세지', '기본값'): 입력을 요청하는 대화 상자
+    // 확인을 누르면 입력값이, 취소를 누르면 null을 반환
+    const number = prompt('숫자를 입력하세요.', '0')
+    document.write(number, ' ', typeof number)
+
+    // (참고) % 연산 시 문자가 숫자로 자동 타입 변환이 일어남
+    result = number % 1 == 0? '짝수' : '홀수';
+    document.write(result, '<br>')
+
+    
   </script>
-</body>
+  </body>
 </html>

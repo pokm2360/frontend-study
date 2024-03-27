@@ -18,8 +18,28 @@
     const num2 = Number(prompt('정수2 입력', '0'));
     const num3 = Number(prompt('정수3 입력', '0'));
 
-    
-    
+    let max = num1;
+    if (num2 > max) {
+      max = num2; 
+    };
+    if (num3 > max) {
+      max = num3;
+    };
+    document.write('최대값: ' + max + '<br>');
+
+    let min = num1;
+    if (num2 < min) {
+      min = num2; 
+    };
+    if (num3 < min) {
+      min = num3;
+    };
+    document.write('최소값: ' + min + '<br>');
+
+    const total = num1 + num2 + num3 ;
+    document.write('합계: ' + total + '<br>');
+    const avg = (num1 + num2 + num3) / 3;
+    document.write('평균: ' + avg + '<br>');
   </script>
 </head>
 <body>

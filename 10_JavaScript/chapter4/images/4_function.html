@@ -17,8 +17,8 @@
   <!-- *** -->
   <div>
     <p>
-      <button type="button" onclick="gallery(0)">이전</button>
-      <button type="button" onclick="gallery(1)">다음</button>
+      <button type="button" onclick="gallery()">이전</button>
+      <button type="button" onclick="gallery()">다음</button>
     </p>
     <p>
       <img src="./pic_1.jpg" alt="photo" class="photo">
@@ -177,7 +177,8 @@
 
     const photoTag = document.querySelector('.photo');
     function gallery() {
-      photoTag.setAttribute();
+      i += 1;
+      photoTag.setAttribute('src', `images/pic_${i}.jpg`);
     }
   </script>
 </body>

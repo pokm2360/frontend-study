@@ -15,14 +15,30 @@
 
 
     // 풀이1
+
     const userSsn = prompt('주민등록번호를 입력하세요.')
     const genSsn = userSsn.substr(6,1);
+    // const genSsn = userSsn.slice(6,7);
+    // const genSsn = userSsn.charAt(6);
+    // const genSsn = userSsn[6];
     if (genSsn === '1' || genSsn === '3') {
       document.write('남자입니다.')
     } else if (genSsn === '2' || genSsn === '4') {
       document.write('여자입니다.')
     }
     
+    // switch문
+    // switch (userSsn) {
+    //   case '1':
+    //   case '3':
+    //     msg = '남자입니다.'
+    //     break;
+    //   case '2':
+    //   case '4':
+    //     msg = '여자입니다.'
+    //     break;
+    // }
+    // document.write(msg);
   </script>
 </head>
 <body>

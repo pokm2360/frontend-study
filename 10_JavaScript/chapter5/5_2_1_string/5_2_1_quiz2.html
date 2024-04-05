@@ -12,10 +12,11 @@
 
     // 풀이2
     let n = prompt('이름을 영어로 입력하세요.');
-    let c = prompt('연락처를 입력하세요.');
-    let str = n.toLocaleUpperCase();
-    let res = c.substring(0,c.length - 4)+'****';
+    let str = n.toUpperCase();
     document.write(str +'<br>');
+    
+    let c = prompt('연락처를 입력하세요.');
+    let res = c.substring(0, c.length - 4)+'****';
     document.write(res);
     
   </script>

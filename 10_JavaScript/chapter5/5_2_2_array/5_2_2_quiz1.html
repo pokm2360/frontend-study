@@ -14,14 +14,31 @@
     const originArr = [1, 2, 4, 0];
 
     // 아래와 같이 복사하면..?
-    // const copyArr = originArr;
-    // copyArr.push(99);
-    // console.log(originArr);
+    const copyArr = originArr;
+    copyArr.push(99);
+    console.log(originArr);
     // 배열은 객체이기 때문에 copyArr와 originArr는 모두 같은 배열을 참조합니다.
     // 즉, 원본도 같이 변경됨
 
     // 풀이1
-    
+    const slice1 = copyArr.slice(3);
+    console.log(slice1);
+
+    const arr1 = [5, 77];
+    const arr2 = [6, 66];
+    const arr3 = [8, 88];
+    const concat1 = arr1.concat(arr2, arr3);
+    console.log(concat1);
+
+    console.log(concat1.sort(function (a, b) {return a - b;}));
+    console.log(concat1.sort(function (a, b) {return b - a;}));
+
+    // const arr1 = ['Cecil', 'Lon'];
+    // const arr2 = ['Emil', 'Tobi', 'Lin'];
+    // const arr3 = ['Robin', 'Morgan'];
+    // const myChildren = arr1.concat(arr2, arr3);
+    // console.log(myChildren);
+
   </script>
 </head>
 <body>

@@ -13,7 +13,14 @@
     const fruits = ['사과', '바나나', '딸기', '포도', '두리안', '파인애플'];
 
     // 풀이3
-    
+    const hateFruits = prompt('먹기 싫은 과일을 입력하세요.')
+    if (fruits.indexOf(hateFruits) === -1 ) {
+      alert('제거할 과일이 없습니다.');
+    } else {
+      let index = fruits.indexOf(hateFruits);
+      const hate = fruits.splice(index, 1);
+      console.log(fruits);
+    };
   </script>
 </head>
 <body>

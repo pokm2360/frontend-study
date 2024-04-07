@@ -9,10 +9,21 @@
     // 문제4
     // 배열에서 최대값, 최소값 구하기(여러 가지 방법이 존재)
     // 힌트: for문 또는 sort() 사용
-    const points = [40, 100, 1, 5, 25, 10];
+    const points = [40, 100, 1, 5, 25, 100];
 
     // 풀이4
-    
+
+    // 작은 순서대로 배열
+    const less = points.sort(function (a, b) {return a - b;});
+    const min = less[0];
+
+    // 큰 순서대로 배열
+    const greater = points.sort(function (a, b) {return b - a;});
+    const max = greater[0];
+
+    // 인덱스를 뽑아서 출력
+    document.write('최소값 :' + min, '<br>');
+    document.write('최대값 :' + max);
   </script>
 </head>
 <body>

@@ -12,18 +12,36 @@
     const points = [40, 100, 1, 5, 25, 100];
 
     // 풀이4
+    let max = points[0]; // -infinity
+    let min = points[0]; // infinity
 
-    // 작은 순서대로 배열
-    const less = points.sort(function (a, b) {return a - b;});
-    const min = less[0];
+    for (const el of points) {
+      if (max < el) {
+        max = el;
+      }
+      if (min > el) {
+        min = el;
+      }
+    }
+    document.write(`최대값: ${max}<br>`)
+    document.write(`최소값: ${min}<br>`)
 
-    // 큰 순서대로 배열
-    const greater = points.sort(function (a, b) {return b - a;});
-    const max = greater[0];
+    // 작은 순서대로 배열(큰 순서 배열 추가)
+    // const less = points.sort(function (a, b) {return a - b;});
+    // const min = less[0];
+    // const max = less[less.length - 1]
 
-    // 인덱스를 뽑아서 출력
-    document.write('최소값 :' + min, '<br>');
-    document.write('최대값 :' + max);
+    // // 큰 순서대로 배열
+    // const greater = points.sort(function (a, b) {return b - a;});
+    // const max = greater[0];
+
+    // // 인덱스를 뽑아서 출력
+    // document.write('최소값 :' + min, '<br>');
+    // document.write('최대값 :' + max);
+
+    // (참고) ES6차 spread 연산자
+    document.write(`최대값: ${Math.max(3, 5, 300)}<br>`);
+    document.write(`최소값: ${Math.min(3, 5, 500)}<br>`);
   </script>
 </head>
 <body>

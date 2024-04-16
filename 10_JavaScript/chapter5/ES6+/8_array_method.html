@@ -24,7 +24,7 @@
     // console.log(newNumbers);
     const newNumbers = numbers.map(num => num * 10);
     console.log(newNumbers);
-
+    
     // Quiz
     // 각 사람의 전체 이름을 가진 새 배열 만들기
     // 예상 결과: ['Goni Kim', 'Zero Cho', 'Velopert Kim']
@@ -34,9 +34,7 @@
       { firstName: 'Velopert', lastName: 'Kim' }
     ];
     
-    const newPersons = persons.map((name) => {
-      return name.firstName + ' ' + name.lastName;
-    });
+    const newPersons = persons.map(name => name.firstName + ' ' + name.lastName);
     console.log(newPersons);
   </script>
 </body>

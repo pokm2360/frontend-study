@@ -91,6 +91,7 @@ function JsXuse() {
       >
         주석 테스트
       </div>
+      <div className="gray-box"></div>
     </>
   );
 

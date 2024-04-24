@@ -1,4 +1,5 @@
 import React from "react";
+import './JsxUse.css';
 
 function JsXuse() {
   // JSX의 사용법(문법)
@@ -52,10 +53,44 @@ function JsXuse() {
   };
   
 // JSX내부에서 자바스크립트를 쓰고싶을때 {}로 묶기
+  // const element = (
+  //   <>
+  //   <div>{name} 배우기</div> 
+  //   <h1>hello, {formatName(user)}</h1>
+  //   </>
+  // );
+
+  // 4. style과 className
+  // 인라인 스타일은 객체 형태로 작성하는데 background-color처럼 -로 구분되어있는
+  // 이름은 camelCase 형태로 네이밍
+  // const style = {
+  //   backgroundColor: 'black',
+  //   color: 'aqua',
+  //   fontSize: 24, // 기본단위 px
+  //   padding: '1rem' // 다른 단위 사용 시 문자열로 설정
+  // };
+
+  // const element = (
+  //   <>
+  //   <div style={style}>리액트 공부하기</div>
+  //   <div className="gray-box"></div>
+  //   </>
+  // );
+
+  // 5. JSX 주석
+  // const a = 21; // JS 주석
+
   const element = (
     <>
-    <div>{name} 배우기</div> 
-    <h1>hello, {formatName(user)}</h1>
+      {/* 주석은 화면에 보이지 않습니다 */}
+      // 주석은 화면에 보이지 않습니다
+      /* 주석은 화면에 보이지 않습니다 */
+
+      <div 
+        // 열리는 태그내부에서는 이렇게 주석 작성
+      >
+        주석 테스트
+      </div>
     </>
   );
 

@@ -7,6 +7,8 @@ import JsXuse from './chapter3/3.4/JsxUse';
 import Library from './chapter3/3.4/Library';
 import Clock from './chapter4/Clock';
 import PropsUse from './chapter5/5.3/PropsUse';
+import CommentEx from './chapter5/5.6/CommentEx';
+import CommentList from './chapter5/CommentList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,14 +23,29 @@ root.render(
   // <JsXuse />
   // <Library />
 
-  // 5장 예제
-  <PropsUse />
   // 4장 예제
   // 1초마다 Clock 컴포넌트를 렌더링 하는 코드
   // setInterval(() => {
-  //   root.render(<Clock />);
-  // }, 1000);
-  // <Clock />
+    //   root.render(<Clock />);
+    // }, 1000);
+    // <Clock />
+    
+    // 5장 예제
+    // <PropsUse />
+
+    // 6장 예제
+    // <CommentEx 
+    // date={new Date()} 
+    // text="안녕"
+    // user={{
+    //   name: 'kim',
+    //   avatarUrl: 'http://baconmockup.com/300/200'
+    //   }
+    // } 
+    // />
+
+    <CommentList />
+
 
 
 );

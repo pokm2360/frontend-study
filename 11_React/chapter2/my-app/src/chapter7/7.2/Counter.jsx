@@ -7,11 +7,17 @@ const Counter = (props) => {
 
   const [color, setColor]=useState(false); // 글자색 상태
   const [str, setStr]=useState(false); // 버튼 상태
-  
+  const [color2, setColor2]=useState('black');
 // useState()의 결과로 배열이 반환됨 -> [초기값, 상태변경함수]
 // 배열의 구조 분해 할당을 사용하여 변수 선언 및 할당
 // 재렌더링이 일어나도 기존 값이 저장되어 있음
 
+const getRandomColor = () => {
+  const r = Math.floor(Math.random() * 256); // 0부터 255까지의 랜덤한 정수
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r},${g},${b})`; // rgb(r, g, b) 형식으로 반환
+};
 
 
   // state 미사용 시
@@ -71,8 +77,8 @@ const Counter = (props) => {
         </button>
 
         {/* 글자색 랜덤변경 */}
-        <p style={{color: rgb(55, 55, 55)}}>현재 글자색: </p>
-        <button onClick={()=> {}}>
+        <p style={{color: color2}}>현재 글자색: {color2}</p>
+        <button onClick={()=> setColor2(getRandomColor())}>
           글자색 변경
         </button>
 

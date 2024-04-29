@@ -57,12 +57,12 @@ root.render(
 
     // 8장 예제
     // <Toggle />
-    // <MyButton />
+    <MyButton />
     // <ConfirmButton />
 
     // 9장 예제
     // <Greeting isLoggedIn={true}/>
-    <LoginControl />
+    // <LoginControl />
 );
 
 // If you want to start measuring performance in your app, pass a function

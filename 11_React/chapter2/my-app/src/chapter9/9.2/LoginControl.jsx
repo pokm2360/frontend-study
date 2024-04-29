@@ -8,6 +8,8 @@ function LogoutButton(props) {
   return <button type='button' onClick={props.onClick}>로그아웃</button>;
 }
 
+
+
 const LoginControl = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -31,7 +33,7 @@ const LoginControl = (props) => {
     <>
       {/* greeting 컴포넌트의 재사용 */}
       <Greeting isLoggedIn={isLoggedIn} />
-      {button}
+      {button} {/* 컴포넌트 */}
     </>
   );
 };

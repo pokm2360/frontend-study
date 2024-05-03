@@ -23,6 +23,11 @@ import NumberList from './chapter10/10.1/NumberList';
 import ListKey from './chapter10/10.2/ListKey';
 import AttendanceBook from './chapter10/AttendanceBook';
 import NameForm from './chapter11/11.2/NameForm';
+import EssayForm from './chapter11/11.3/EssayForm';
+import FlavorForm from './chapter11/11.3/FlavorForm';
+import Reservation from './chapter11/11.4/Reservation';
+import ReservationRefactoring from './chapter11/11.4/ReservationRefactoring';
+import SignUp from './chapter11/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -82,7 +87,12 @@ root.render(
     // <AttendanceBook />
 
     // 11장 예제
-    <NameForm />
+    // <NameForm />
+    // <EssayForm />
+    // <FlavorForm />
+    // <ReservationRefactoring />
+    <SignUp />
+
 );
 
 // If you want to start measuring performance in your app, pass a function

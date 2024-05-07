@@ -77,7 +77,3 @@ function App() {
 }
 
 export default App;
-git config --global user.name "[user name]"
-출처: https://kotlinworld.com/266 [조세영의 Kotlin World:티스토리]
-git config user.email "[por0632@naver.com]"
-출처: https://kotlinworld.com/266 [조세영의 Kotlin World:티스토리]

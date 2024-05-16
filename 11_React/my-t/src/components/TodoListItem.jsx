@@ -69,10 +69,10 @@ const Edit = styled.div`
 
 // 각 할 일 항목에 대한 정보를 보여주는 컴포넌트
 // todo 객체를 props로 받아와서 상태에 다라 다른 스타일의 UI를 보여줌
-function TodoListItem({ todo: {id, text, done}, onRemove }) { // 객체 구조분해할당 props로 받아서도 가능
+function TodoListItem({ todo: {id, text, done}, onRemove, onToggle }) { // 객체 구조분해할당 props로 받아서도 가능
   return (
     <TodoListItemWrapper>
-      <Checkbox done={done}>
+      <Checkbox done={done} onClick={() => onToggle(id)}>
         {done ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </Checkbox>
 

@@ -33,11 +33,8 @@ const StyledButton = styled.button`
   cursor: pointer;
   /* transition: 0.2s background ease-in; */
 
-  &:hover {
-  
-  }
-
-  @keyframes shake {
+  /* 키프레임 정의해서 css 속성으로 넣어주기 */
+  @keyframes shakeit {
     0% { transform: translate(1px, 1px) rotate(0deg); }
       10% { transform: translate(-1px, -2px) rotate(-1deg); }
       20% { transform: translate(-2px, 0px) rotate(1deg); }
@@ -50,6 +47,11 @@ const StyledButton = styled.button`
       90% { transform: translate(1px, 2px) rotate(0deg); }
       100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+  &:hover {
+    animation-name: shakeit;
+  }
+  
   `;
 
 function TodoInsert() {

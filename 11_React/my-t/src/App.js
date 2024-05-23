@@ -61,7 +61,6 @@ function App() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   const handleChange = (e) => { // 제어 컴포넌트로 관리
     setEditTodo({
       ...editTodo,
@@ -73,6 +72,7 @@ function App() {
     setTodos(todos.map((todo) => todo.id === editTodo.id ? editTodo : todo))
     handleCloseModal();
   };
+
   // 로컬 스토리지에서 가져오기
   useEffect(() => {
     const dbTodos = JSON.parse(localStorage.getItem('todos') || []) ; // [] 기본값 주는거 - 초기에 'todos가 없으면 null을 반환
@@ -152,6 +152,7 @@ function App() {
       <TodoInsert onInsert={handleInsert} />
       <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} onModal={handleOpenModal}/>
     </TodoTemplate>
+
       {/* {수정하기 모달} */}
       {showModal && (
       <Modal title="할 일 수정"

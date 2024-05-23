@@ -18,17 +18,6 @@ const TodoListItemWrapper = styled.div`
   }
 `;
 
-const Checkbox = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-
-  svg {
-    font-size: 1.5rem;
-    color: ${props => props.done && '#22b8cf'}
-  }
-`;
-
 const Text = styled.div`
   margin-left: 0.5rem;
   flex: 1; // 차지할 수 있는 모든 영역 차지

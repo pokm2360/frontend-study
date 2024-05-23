@@ -5,8 +5,10 @@ import { useState } from "react";
 const Wrapper = styled.form`
   display: flex;
   background: #999999;
+  margin-left: 16px;
   border-radius: 20px;
   width: 480px;
+  overflow: hidden;
 `;
 
 const StyledInput = styled.input`
@@ -25,16 +27,6 @@ const StyledInput = styled.input`
     color: #dee2e6;
   }
   `;
-// const animation = styled.turn`
-// @keyframes turn {
-//     0% { transform: rotate(0deg); }
-//     50% { transform: rotate(180deg); }
-//     100% { transform: rotate(360deg); }
-//   }
-//   .turn {
-//   animation: rotate 2s linear infinite;
-// }
-// `
 
 const StyledButton = styled.button`
   border: none;
@@ -46,20 +38,22 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  `;
+  transform: shake;
+
   /* 키프레임 정의해서 css 속성으로 넣어주기 */
-const animationicon = styled.MdAddReaction`
-  @keyframes turn {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-15deg); }
-    100% { transform: rotate(45deg); }
+  @keyframes shake {
+      0% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-12deg) scale(1.15); }
+      50% { transform: rotate(12deg) scale(1.3); }
+      75% { transform: rotate(-12deg) scale(1.15); }
+      100% { transform: rotate(12deg) scale(1); }
+
   }
-  
   &:hover {
-    animation-name: turn;
-    animation-duration: 1s;
+    animation: shake 1s linear infinite;
   }
-`
+  `;
+  
 
 function TodoInsert(props) {
   const { onInsert } = props;

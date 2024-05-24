@@ -46,7 +46,10 @@ function App() {
     setTodos(todos.concat(todo));
   }
   // Read
+  
   // Update
+  const handleCheck = (id) => {
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo))};
 
   // Delete
   // handleRemove는 id값을 인자로 받고 todos 배열을 filter로 거름(todo.id와 id가 같으면!)
@@ -64,7 +67,7 @@ function App() {
       <GlobalStyle />
       <TodoTemplates>
         <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove}/>
+        <TodoList todos={todos} onRemove={handleRemove} onCheck={handleCheck}/>
       </TodoTemplates>
     </>
   );

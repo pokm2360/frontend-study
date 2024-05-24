@@ -43,9 +43,9 @@ const StyledButton = styled.button`
   /* 키프레임 정의해서 css 속성으로 넣어주기 */
   @keyframes shake {
       0% { transform: rotate(0deg) scale(1); }
-      25% { transform: rotate(-12deg) scale(1.15); }
-      50% { transform: rotate(12deg) scale(1.3); }
-      75% { transform: rotate(-12deg) scale(1.15); }
+      25% { transform: rotate(-12deg) scale(1.4); }
+      50% { transform: rotate(12deg) scale(1.7); }
+      75% { transform: rotate(-12deg) scale(1.4); }
       100% { transform: rotate(12deg) scale(1); }
 
   }

@@ -5,6 +5,8 @@ import reset from "styled-reset";
 import TodoTemplates from "./TodoTemplates";
 import styled, { createGlobalStyle } from "styled-components";
 import backgroundImage from '../image/background2.jpg';
+import { useContext } from "react";
+import { TodoContext } from '../App';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -35,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
       padding: 1.5rem 3rem;
       font-size: 2.8rem;
       border-radius: 5px;
-      cursor: pointer;
+      cursor: pointer;//
       transition: background-color 0.3s;
 
       &:hover {
@@ -46,8 +48,7 @@ const GlobalStyle = createGlobalStyle`
 
 function DeletePage() {
   const navigate = useNavigate();
-  // const { todos, onRemove, onCheck, handleEdit } = props;
-
+  const { deletedTodos } = useContext(TodoContext); // Context에서 deletedTodos 가져옴
 
   return (
     <>
@@ -58,6 +59,18 @@ function DeletePage() {
         </button>
       </MainBtn>
       
+      {deletedTodos.length > 0 ? (
+        <ul>
+          {deletedTodos.map(todo => (
+            <TodoListItem
+              key={todo.id}
+              todo={todo}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p>삭제된 할 일이 없습니다.</p>
+      )}
       {/* <TodoListItem>
         {todos.map(todo => (
           <TodoListItem
@@ -69,8 +82,6 @@ function DeletePage() {
           />
         ))}
       </TodoListItem> */}
-
-
     </>
   );
 };

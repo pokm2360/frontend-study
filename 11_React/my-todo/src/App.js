@@ -4,7 +4,7 @@ import TodoTemplates from './Components/TodoTemplates';
 import TodoInsert from './Components/TodoInsert';
 import TodoList from './Components/TodoList';
 import { v4 as uuidv4 } from "uuid";
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import backgroundImage from './image/background2.jpg';
 import Modal from './Components/Modal';
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
@@ -48,13 +48,17 @@ const MainBtn = styled.div`
       }
     }
   `
-
+  // React Context
+  export const TodoContext = createContext();
 function App() {
   const [todos, setTodos] = useState([
     // if (!todos) {
       // 할 일이 없으면 새 할 일을 추가하세요! 뜨게하기
     // }
   ]);
+  const [showModal, setShowModal] = useState(false);
+  const [editTodo, setEditTodo] = useState({}); 
+  const [deletedTodos, setDeletedTodos] = useState([]);
   const navigate = useNavigate();
 
   // Create
@@ -76,9 +80,6 @@ function App() {
   // const handleEditComplete = (newText, id) => {
   //   setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo));
   // };
-  const [showModal, setShowModal] = useState(false);
-  const [editTodo, setEditTodo] = useState({}); 
-  const [deletedTodos, setDeletedTodos] = useState([]);
 
   const handleOpenModal = (id) => {
     setEditTodo(todos.find(todo => todo.id === id));
@@ -117,14 +118,16 @@ function App() {
       setTodos(todos.filter(todo => todo.id !== id));
     }
   };
+  
 
   return (
+    <TodoContext.Provider value={{ deletedTodos, todos, setTodos, handleRemove }}>
     <>
-      {/* <Reset /> or ${reset} 둘 중 하나만 써도됨 */}
       <GlobalStyle />
       <MainBtn>
         <button type="text" className="btn" onClick={() => {navigate('/delete')}}>
-          삭제한거
+          Complete
+          TODO
         </button>
       </MainBtn>
       
@@ -141,9 +144,7 @@ function App() {
       </Modal>
       )}
     </>
-      
-
-    
+    </TodoContext.Provider>
   );
 }
 

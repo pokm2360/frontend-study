@@ -87,19 +87,20 @@ const Text = styled.span`
   }
 `;
 
-const Input = styled.div`
-  font-size: 22px; 
-  font-weight: 900;
-  margin-left: 15px;
-  margin-bottom: 2px;
-  border: none;
-`
+// const Input = styled.div`
+//   font-size: 22px; 
+//   font-weight: 900;
+//   margin-left: 15px;
+//   margin-bottom: 2px;
+//   border: none;
+// `
 
 const Checkbox = styled.div`
   display: flex;
   align-items: center;
   margin-left: 8px;
   font-size: 1.3rem;
+  cursor: pointer;
 
   svg {
     font-size: 1.3rem;
@@ -108,29 +109,29 @@ const Checkbox = styled.div`
 `;
 
 function TodoListItem(props) {
-  const { todo: {id, text, done}, onRemove, onCheck } = props;
+  const { todo: {id, text, done}, onRemove, onCheck, onModal } = props;
+  console.log(props);
 
-  const [editMode, setEditMode] = useState(false);
-  const [editedtext, setEditedtext] = useState(text);
+  // const [editMode, setEditMode] = useState(false);
+  // const [editedtext, setEditedtext] = useState(text);
 
-  const handlEditMode = () => {
-    setEditMode(!editMode);
-  }
+  // const handleEditMode = () => {
+  //   setEditMode(!editMode);
+  // }
 
-  const handleInput = (e) => {
-    setEditedtext(e.target.value);
-  }
+  // const handleInput = (e) => {
+  //   setEditedtext(e.target.value);
+  // }
   
-  const handleEditComplete = () => {
-    if (editedtext === '') {
-      setEditMode(false);
-      return;
-    }
-    props.handleEditComplete(editedtext, props.todo.id);
-    setEditedtext('');
-    setEditMode(false);
-  }
-
+  // const handleEditComplete = () => {
+  //   const nextTodoList = todo.map((tod) => ({
+  //     ...tod,
+  //     text: tod.id === tod.id ? editedtext : tod.text // 새로운 아이템 내용을 넣어줌
+  //   }));
+  //   setTodos(nextTodoList); // 새로운 리스트를 넣어줌
+  //   setEditMode(false);
+  // };
+  
   return (
     <Wrapper>
 
@@ -140,22 +141,24 @@ function TodoListItem(props) {
         {done ? <IoCheckbox /> : <IoCheckboxOutline/>}
       </Checkbox>
 
-          {editMode ? (
+          {/* {editMode ? (
             <Input>
               <input
                 type="text"
                 value={editedtext}
                 onChange={handleInput}
+                onClick={handleEditComplete}
                 autoFocus
               />
             </Input>) 
-          : 
-          <Text done={done} value={text}>
+          : (
+          )} */}
+          <Text done={done}>
             {text}
-          </Text>}
+          </Text>
       </TextWrapper>
 
-      <Edit onClick={() => handlEditMode()}>
+      <Edit onClick={() => onModal(id)}>
         <LiaEditSolid />
       </Edit>
 

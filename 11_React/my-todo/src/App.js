@@ -6,6 +6,9 @@ import TodoList from './Components/TodoList';
 import { v4 as uuidv4 } from "uuid";
 import { useState } from 'react';
 import backgroundImage from './image/background2.jpg';
+import Modal from './Components/Modal';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import DeletePage from "./Components/DeletePage";
 
 // 글로벌 스타일
 const GlobalStyle = createGlobalStyle`
@@ -22,6 +25,29 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const MainBtn = styled.div`
+  position: fixed;
+  bottom: 13rem;
+  left: 50%;
+  transform: translateX(-50%); /* 좌우 가운데 정렬 */
+  z-index: 1000;
+
+    button {
+      background-color: #999;
+      justify-content: center;
+      color: white;
+      border: none;
+      padding: 1.5rem 3rem;
+      font-size: 2.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #5fa8d3;
+      }
+    }
+  `
 
 function App() {
   const [todos, setTodos] = useState([
@@ -29,6 +55,7 @@ function App() {
       // 할 일이 없으면 새 할 일을 추가하세요! 뜨게하기
     // }
   ]);
+  const navigate = useNavigate();
 
   // Create
   // handleInsert는 text를 인자로 받아 todo라는 새로운 객체를 만들어 concat으로 todos 배열에 추가함
@@ -46,7 +73,30 @@ function App() {
     setTodos(todos.concat(todo));
   }
   // Read
-  
+  // const handleEditComplete = (newText, id) => {
+  //   setTodos(todos.map(todo => todo.id === id ? { ...todo, text: newText } : todo));
+  // };
+  const [showModal, setShowModal] = useState(false);
+  const [editTodo, setEditTodo] = useState({}); 
+  const [deletedTodos, setDeletedTodos] = useState([]);
+
+  const handleOpenModal = (id) => {
+    setEditTodo(todos.find(todo => todo.id === id));
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleChange = (e) => {
+    setEditTodo({
+      ...editTodo,
+      text: e.target.value
+    });
+  };
+  const handleEdit = () => {
+    setTodos(todos.map((todo) => todo.id === editTodo.id ? editTodo : todo))
+    handleCloseModal();
+  };
   // Update
   const handleCheck = (id) => {
     setTodos(todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo))};
@@ -55,21 +105,45 @@ function App() {
   // handleRemove는 id값을 인자로 받고 todos 배열을 filter로 거름(todo.id와 id가 같으면!)
   // 만들어진 새로운 배열은 setTodos에 state로 저장됨 
   // props로 todolist-todolistitem까지 구분할로 넘겨준 뒤 해당 아이콘에 onClick 이벤트 시 handleRemove 작동
+  // const handleRemove = (id) => {
+  //   setTodos(todos.filter((todo) => {
+  //     return todo.id !== id
+  //   }));
+  // }
   const handleRemove = (id) => {
-    setTodos(todos.filter((todo) => {
-      return todo.id !== id
-    }));
-  }
+    const removedTodo = todos.find(todo => todo.id === id);
+    if (removedTodo) {
+      setDeletedTodos([...deletedTodos, removedTodo]);
+      setTodos(todos.filter(todo => todo.id !== id));
+    }
+  };
 
   return (
     <>
       {/* <Reset /> or ${reset} 둘 중 하나만 써도됨 */}
       <GlobalStyle />
+      <MainBtn>
+        <button type="text" className="btn" onClick={() => {navigate('/delete')}}>
+          삭제한거
+        </button>
+      </MainBtn>
+      
       <TodoTemplates>
         <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove} onCheck={handleCheck}/>
+        <TodoList todos={todos} onRemove={handleRemove} onCheck={handleCheck} onModal={handleOpenModal} setTodos={setTodos}/>
       </TodoTemplates>
+
+      {showModal && (
+      <Modal title="TODO 수정"
+      closeModal={handleCloseModal}
+      onEdit={handleEdit}>
+      <input type="text" value={editTodo.text} onChange={handleChange}/>
+      </Modal>
+      )}
     </>
+      
+
+    
   );
 }
 

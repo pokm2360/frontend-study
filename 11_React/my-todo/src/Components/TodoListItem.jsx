@@ -109,7 +109,7 @@ const Checkbox = styled.div`
 `;
 
 function TodoListItem(props) {
-  const { todo: {id, text, done}, onRemove, onCheck, onModal } = props;
+  const { todo: {id, text, done}, onRemove, onCheck, onModal, dDay } = props;
   console.log(props);
 
   // const [editMode, setEditMode] = useState(false);
@@ -155,6 +155,7 @@ function TodoListItem(props) {
           )} */}
           <Text done={done}>
             {text}
+            {/* {dDay} */}
           </Text>
       </TextWrapper>
 

@@ -7,6 +7,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import backgroundImage from '../image/background2.jpg';
 import { useContext } from "react";
 import { TodoContext } from '../App';
+import moment from "moment";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -40,20 +41,46 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;//
       transition: background-color 0.3s;
 
-      &:hover {
-        background-color: #5fa8d3;
+      @keyframes shake {
+      0% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-12deg) scale(1.05); }
+      50% { transform: rotate(12deg) scale(1.1); }
+      75% { transform: rotate(-12deg) scale(1.05); }
+      100% { transform: rotate(12deg) scale(1); }
+    }
+    &:hover {
+      background-color: #5fa8d3;
+      animation: shake 1s linear infinite;
       }
     }
   `
 
-function DeletePage() {
-  const navigate = useNavigate();
-  // const { todos, onRemove, onCheck, handleEdit, onCheck }
-  // const { deletedTodos } = useContext(TodoContext); // Context에서 deletedTodos 가져옴
+const DateWrapper = styled.div`
+    text-align: center;
+    line-height: 1.5;
+    width: 25rem;
+    height: 3rem;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #999;
+  `
 
+const date = new Date();
+const formattedDate = moment(date).format('YYYY년MM월DD일 h:mm a');
+const dDay = moment(`${date}, YYYY.MM.DD`).fromNow();
+
+function DeletePage(props) {
+  const navigate = useNavigate();
+  const { todos, onRemove, handleEdit, onCheck, deletedTodos } = props;
+  console.log(deletedTodos);
   return (
     <>
       <GlobalStyle/>
+
+      <DateWrapper>{formattedDate}</DateWrapper>
+
       <MainBtn>
         <button type="text" className="btn" onClick={() => {navigate('/')}}>
           메인으로
@@ -66,6 +93,7 @@ function DeletePage() {
             <TodoListItem
               key={todo.id}
               todo={todo}
+              done
             />
           ))}
         </ul>
@@ -73,7 +101,7 @@ function DeletePage() {
         <p>삭제된 할 일이 없습니다.</p>
       )} */}
       {/* <TodoListItem>
-        {todos.map(todo => (
+        {deletedTodos.map(todo => (
           <TodoListItem
           key={todo.id}
           todo={todo}

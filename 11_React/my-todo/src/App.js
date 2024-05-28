@@ -9,6 +9,7 @@ import backgroundImage from './image/background2.jpg';
 import Modal from './Components/Modal';
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import DeletePage from "./Components/DeletePage";
+import moment from "moment";
 
 // 글로벌 스타일
 const GlobalStyle = createGlobalStyle`
@@ -42,11 +43,32 @@ const MainBtn = styled.div`
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s;
+      transform: shake;
 
-      &:hover {
-        background-color: #5fa8d3;
+      @keyframes shake {
+      0% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-12deg) scale(1.05); }
+      50% { transform: rotate(12deg) scale(1.1); }
+      75% { transform: rotate(-12deg) scale(1.05); }
+      100% { transform: rotate(12deg) scale(1); }
+  }
+    &:hover {
+      background-color: #5fa8d3;
+      animation: shake 1s linear infinite;
       }
     }
+  `
+
+  const DateWrapper = styled.div`
+    text-align: center;
+    line-height: 1.5;
+    width: 25rem;
+    height: 3rem;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #999;
   `
 
   export const TodoContext = createContext();
@@ -59,6 +81,8 @@ const MainBtn = styled.div`
   const [showModal, setShowModal] = useState(false);
   const [editTodo, setEditTodo] = useState({}); 
   const [deletedTodos, setDeletedTodos] = useState([]);
+  const [timer, setTimer] = useState("00:00:00");
+  const [sendDeletePage, setSendDeletePage] = useState(false);
   const navigate = useNavigate();
 
   // Create
@@ -106,24 +130,43 @@ const MainBtn = styled.div`
   // handleRemove는 id값을 인자로 받고 todos 배열을 filter로 거름(todo.id와 id가 같으면!)
   // 만들어진 새로운 배열은 setTodos에 state로 저장됨 
   // props로 todolist-todolistitem까지 구분할로 넘겨준 뒤 해당 아이콘에 onClick 이벤트 시 handleRemove 작동
-  // const handleRemove = (id) => {
-  //   setTodos(todos.filter((todo) => {
-  //     return todo.id !== id
-  //   }));
-  // }
   const handleRemove = (id) => {
-    const removedTodo = todos.find(todo => todo.id === id);
-    if (removedTodo) {
-      setDeletedTodos([...deletedTodos, removedTodo]);
-      setTodos(todos.filter(todo => todo.id !== id));
-    }
-  };
+    setDeletedTodos(
+    setTodos(todos.filter((todo) => {
+      return todo.id !== id
+    })));
+  }
   
+  // const handleRemove = (id) => {
+  //   const removedTodo = todos.find(todo => todo.id === todo.id);
+  //   if (removedTodo) {
+  //     setDeletedTodos([...deletedTodos, removedTodo]);
+  //     setTodos(todos.filter(todo => todo.id !== id));
+  //   }
+  // };
+// 타이머
+  // const currentTimer = () => {
+  //   const date = new Date();
+  //   const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+  //   const hours = String(date.getHours()).padStart(2, "0");
+  //   const minutes = String(date.getMinutes()).padStart(2, "0");
+  //   const seconds = String(date.getSeconds()).padStart(2, "0");
+  //   setTimer(`${hours}:${minutes}:${seconds}`)
+  // }
+  // const startTimer = () => {
+  //   setInterval(currentTimer, 1000)
+  // }
+  // startTimer()
 
+    const date = new Date();
+    const formattedDate = moment(date).format('YYYY년MM월DD일 h:mm a');
+    const dDay = moment(`${date}, YYYY.MM.DD`).fromNow();
   return (
-    <TodoContext.Provider value={{ deletedTodos, todos, setTodos, handleRemove }}>
     <>
-      <GlobalStyle />
+      <GlobalStyle></GlobalStyle>
+
+    <DateWrapper>{formattedDate}</DateWrapper>
+
       <MainBtn>
         <button type="text" className="btn" onClick={() => {navigate('/delete')}}>
           Complete
@@ -133,7 +176,7 @@ const MainBtn = styled.div`
       
       <TodoTemplates>
         <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove} onCheck={handleCheck} onModal={handleOpenModal} setTodos={setTodos}/>
+        <TodoList todos={todos} onRemove={handleRemove} onCheck={handleCheck} onModal={handleOpenModal} setTodos={setTodos} dDay={dDay}/>
       </TodoTemplates>
 
       {showModal && (
@@ -143,8 +186,11 @@ const MainBtn = styled.div`
       <input type="text" value={editTodo.text} onChange={handleChange}/>
       </Modal>
       )}
+
+      {sendDeletePage && (
+        <DeletePage todos={todos} onRemove={handleRemove} onCheck={handleCheck} deletedTodos={deletedTodos} setTodos={setTodos}/>
+      )}
     </>
-    </TodoContext.Provider>
   );
 }
 

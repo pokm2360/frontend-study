@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
 import TodoList from "./TodoList";
 import TodoListItem from "./TodoListItem";
 import reset from "styled-reset";
@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     bottom: 13rem;
     left: 50%;
     transform: translateX(-50%); /* 좌우 가운데 정렬 */
-    z-index: 1000;
+    z-index: 1;
 
     button {
       background-color: #999;
@@ -48,7 +48,8 @@ const GlobalStyle = createGlobalStyle`
 
 function DeletePage() {
   const navigate = useNavigate();
-  const { deletedTodos } = useContext(TodoContext); // Context에서 deletedTodos 가져옴
+  // const { todos, onRemove, onCheck, handleEdit, onCheck }
+  // const { deletedTodos } = useContext(TodoContext); // Context에서 deletedTodos 가져옴
 
   return (
     <>
@@ -59,7 +60,7 @@ function DeletePage() {
         </button>
       </MainBtn>
       
-      {deletedTodos.length > 0 ? (
+      {/* {deletedTodos.length > 0 ? (
         <ul>
           {deletedTodos.map(todo => (
             <TodoListItem
@@ -70,7 +71,7 @@ function DeletePage() {
         </ul>
       ) : (
         <p>삭제된 할 일이 없습니다.</p>
-      )}
+      )} */}
       {/* <TodoListItem>
         {todos.map(todo => (
           <TodoListItem

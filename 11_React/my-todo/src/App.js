@@ -48,9 +48,9 @@ const MainBtn = styled.div`
       }
     }
   `
-  // React Context
+
   export const TodoContext = createContext();
-function App() {
+  function App() {
   const [todos, setTodos] = useState([
     // if (!todos) {
       // 할 일이 없으면 새 할 일을 추가하세요! 뜨게하기
@@ -137,9 +137,9 @@ function App() {
       </TodoTemplates>
 
       {showModal && (
-      <Modal title="TODO 수정"
-      closeModal={handleCloseModal}
-      onEdit={handleEdit}>
+        <Modal title="TODO 수정"
+        closeModal={handleCloseModal}
+        onEdit={handleEdit}>
       <input type="text" value={editTodo.text} onChange={handleChange}/>
       </Modal>
       )}

@@ -1,8 +1,9 @@
-import { Route, useNavigate } from "react-router-dom";
+import { Route, useLocation, useNavigate } from "react-router-dom";
 import TodoList from "./TodoList";
 import TodoListItem from "./TodoListItem";
-import reset from "styled-reset";
 import TodoTemplates from "./TodoTemplates";
+import TodoInsert from "./TodoInsert";
+import reset from "styled-reset";
 import styled, { createGlobalStyle } from "styled-components";
 import backgroundImage from '../image/background2.jpg';
 import { useContext } from "react";
@@ -71,10 +72,12 @@ const date = new Date();
 const formattedDate = moment(date).format('YYYY년MM월DD일 h:mm a');
 const dDay = moment(`${date}, YYYY.MM.DD`).fromNow();
 
-function DeletePage(props) {
+function DeletePage() {
+  // const location = useLocation();
+  // const { deletedTodos } = location.state || { deletedTodos: [] };
   const navigate = useNavigate();
-  const { todos, onRemove, handleEdit, onCheck, deletedTodos } = props;
-  console.log(deletedTodos);
+  // const { todos, onRemove, handleEdit, onCheck, deletedTodos, onModal, onInsert } = props;
+
   return (
     <>
       <GlobalStyle/>
@@ -86,7 +89,22 @@ function DeletePage(props) {
           메인으로
         </button>
       </MainBtn>
-      
+
+      {/* <TodoList>
+        {deletedTodos.map(todo => (
+          <TodoListItem
+            key={todo.id}
+            todo={todo}
+            done
+          />
+        ))}
+      </TodoList> */}
+      {/* <TodoList todos={completedTodos} />
+      <TodoList todos={deletedTodos} /> */}
+      {/* <TodoTemplates>
+        <TodoInsert onInsert={onInsert}/>
+        <TodoList todos={todos} onRemove={onRemove} onCheck={onCheck} onModal={onModal} dDay={dDay}/>
+      </TodoTemplates> */}
       {/* {deletedTodos.length > 0 ? (
         <ul>
           {deletedTodos.map(todo => (
@@ -100,7 +118,7 @@ function DeletePage(props) {
       ) : (
         <p>삭제된 할 일이 없습니다.</p>
       )} */}
-      {/* <TodoListItem>
+      {/* <TodoList>
         {deletedTodos.map(todo => (
           <TodoListItem
           key={todo.id}
@@ -110,7 +128,7 @@ function DeletePage(props) {
           handleEdit={handleEdit}
           />
         ))}
-      </TodoListItem> */}
+      </TodoList>*/}
     </>
   );
 };

@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css'; // bootstrap css추가
+import 'react-toastify/dist/ReactToastify.min.css'; // ReactToastify css추가
 import { store } from './app/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

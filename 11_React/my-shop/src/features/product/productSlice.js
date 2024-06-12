@@ -15,16 +15,23 @@ const productSlice = createSlice({
     },
     getSelectedProduct: (state, action) => {
       state.selectedProduct = action.payload;
+    },
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
     }
   }
 });
 
 // 액션 생성 함수(추가되는 데이터)
-export const { getAllProducts, getSelectedProduct } = productSlice.actions;
+export const { 
+  getAllProducts, 
+  getSelectedProduct, 
+  clearSelectedProduct 
+} = productSlice.actions;
 
 // 선택자 함수(state는 전역 state를 뜻함)
 export const selectProductList = (state) => state.product.productList;
-export const selectedProduct = (state) => state.product.selectedProduct;
+export const selectSelectedProduct = (state) => state.product.selectedProduct;
 
 // 리듀서 함수들
 export default productSlice.reducer;

@@ -1,5 +1,5 @@
-import { Alert, Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Alert, Button, Col, Container, Form, Modal, Nav, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import styled, { keyframes } from "styled-components";
 import Loading2 from "../components/Loading2";
 import { toast } from "react-toastify";
 import TabContents from "../components/TabContents";
+import { addItemToCart } from "../features/cart/cartSlice";
 
 // 스타일드 컴포넌트를 이용한 애니메이션 속성 적용
 const highlight = keyframes`
@@ -26,10 +27,15 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector(selectSelectedProduct);
   const [alert, setAlert] = useState(true); // info alert 창
-  const [orderCount, setOrderCount] = useState(); // 주문수량 상태
+  const [orderCount, setOrderCount] = useState(1); // 주문수량 상태
   const [loading, setLoading] = useState(false);
-  const [currentTabIndex, setCurrentTabIndex] = useState(0);
-  const [currentTab, setCurrentTab] = useState();
+  const [currentTabIndex, setCurrentTabIndex] = useState(0); // 현재 탭 상태
+  const [currentTab, setCurrentTab] = useState(); // 현재 탭 상태
+  const [showModal, setShowModal] = useState(false); // 모달 상태
+  const handleCloseModal = () => setShowModal(false);
+  const handleOpenModal = () => setShowModal(true);
+  const navigate = useNavigate();
+
 
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 저장
@@ -82,6 +88,22 @@ function ProductDetail() {
     return <Loading2 />
   }
   
+  const handleClickCart = () => {
+    // 상품 정보 + 주문 수량도 같이 전달
+    // 객체 형태로 여러 데이터 전달하기
+    // dispatch(addItemToCart({
+    //   id: product.id,
+    //   title: product.title,
+    //   price: product.price,
+    //   count: orderCount
+    // }));
+    dispatch(addItemToCart({ // ES6차 활용
+      ...product,
+      count: orderCount
+    }));
+    handleOpenModal();
+  }
+
   // 초기값을 null로 
   if(!product) {
     return null;
@@ -117,7 +139,8 @@ function ProductDetail() {
           {/* Quiz: text input을 제어 컴포넌트로 만들기 */}
           <Form.Control type="text" value={orderCount} onChange={handleChangeOrderCount}/>
         </Col>
-        <Button variant="primary">주문하기</Button>
+        <Button variant="primary" >주문하기</Button>
+        <Button variant="warning" onClick={handleClickCart}>장바구니</Button>
         </Col>
       </Row>
 
@@ -144,7 +167,7 @@ function ProductDetail() {
 
       {/* 탭의 내용을 다 만들어 놓고 조건부 렌더링하면 됨 */}
       {/* 방법1: 삼항 연산자 사용(가독성 나쁨) */}
-      {currentTabIndex === 0
+      {/* {currentTabIndex === 0
         ? <div>탭 내용1</div>
         : currentTabIndex === 1
           ? <div>탭 내용2</div>
@@ -153,17 +176,17 @@ function ProductDetail() {
             : currentTabIndex === 3
               ? <div>탭 내용4</div>
               : null
-      }
+      } */}
       {/* 방법2: 컴포넌트로 추출(가독성 개선) */}
       <TabContents currentTabIndex={currentTabIndex}/>
       {/* 방법3(편법): 배열이나 객체 형태로 만들어서 조건부 렌더링 */}
       {/* 배열 형태 */}
-      {[
+      {/* {[
         <div>탭 내용1</div>,
         <div>탭 내용2</div>,
         <div>탭 내용3</div>,
         <div>탭 내용4</div>
-      ][currentTabIndex]}
+      ][currentTabIndex]} */}
 
       {/* Quiz: 객체 형태 */}
       {/* currentTab - detail, review, q&a, exchange - state로 관리
@@ -175,6 +198,25 @@ function ProductDetail() {
         'q&a': <div>탭 내용3</div>,
         'exchange': <div>탭 내용4</div>
       }[currentTab]}
+
+      {/* 장바구니 모달 -> 추후 범용적인 공통 모달로 만들고 구체화하여 사용하는 것이 좋음 */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>알림</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          장바구니에 상품을 담았습니다.<br/>
+          장바구니로 이동하시겠습니까?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            취소
+          </Button>
+          <Button variant="primary" onClick={() => navigate('/cart')}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

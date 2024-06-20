@@ -22,3 +22,5 @@ export const getMoreProducts = async () => {
     console.error(error);
   }
 };
+
+//

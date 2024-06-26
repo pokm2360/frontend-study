@@ -9,6 +9,9 @@ import Loading2 from "../components/Loading2";
 import { toast } from "react-toastify";
 import TabContents from "../components/TabContents";
 import { addItemToCart } from "../features/cart/cartSlice";
+import { addProduct } from "../api/productAPI";
+
+
 
 // 스타일드 컴포넌트를 이용한 애니메이션 속성 적용
 const highlight = keyframes`
@@ -157,7 +160,7 @@ function ProductDetail() {
           {/* Quiz: text input을 제어 컴포넌트로 만들기 */}
           <Form.Control type="text" value={orderCount} onChange={handleChangeOrderCount}/>
         </Col>
-        <Button variant="primary" >주문하기</Button>
+        <Button variant="primary" onClick={addProduct}>주문하기</Button>
         <Button variant="warning" onClick={handleClickCart}>장바구니</Button>
         </Col>
       </Row>

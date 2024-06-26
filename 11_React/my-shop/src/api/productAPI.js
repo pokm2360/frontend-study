@@ -27,8 +27,8 @@ export const getMoreProducts = async () => {
 // json-server 이용 시 테스트 가능
 export const addProduct = async (product) => {
   try {
-    const response = await axios.post('http://localhost:4000/products', { product });
-    if (response.status === 200) {
+    const response = await axios.post('http://localhost:8080/board/register', { "no":0, "title":"제목~", "content":"내용~", "writer":"user" });
+    if (response.status === 201) {
       return response.data;
     } else {
       throw new Error(`api error: ${response.status} ${response.statusText}`);

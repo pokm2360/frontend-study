@@ -1,12 +1,13 @@
-import styled, { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Route, Routes, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import Layout from "./pages/Layout";
 import Main from "./pages/Main";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
-import { Ellipsis } from "react-bootstrap/esm/PageItem";
+import Login from "./pages/Login";
 
 // 글로벌(공통) 스타일 설정
 const GlobalStyle = createGlobalStyle`
@@ -18,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
-  #root { // id가 root인 모든 태그를 가운데정렬(app.test.js)
+  #root {
     text-align: center;
   }
 
@@ -39,38 +40,36 @@ function App() {
     <>
       {/* 부트스트랩 연습 */}
       {/* 1) 리액트 부트스트랩 */}
-      {/* <Button as="a" variant="primary">primary</Button>
+      {/* <Button variant="primary">Primary</Button> */}
       {/* 2) 기존 부트스트랩 */}
-      {/* <button type="button" class="btn btn-primary">Primary</button> */}
+      {/* <button type="button" className="btn btn-primary">Primary</button> */}
 
       <GlobalStyle />
+      
+      {/* Quiz: 헤더를 Layout 컴포넌트로 추출 및 Nested Route 구성해보기 */}
 
-      {/* Quiz: Layout 컴포넌트로 추출 및 Nested Router 구성해보기 */}
-      <BrowserRouter>
-        <Routes>
-        {/* 헤더 영역: 상단  */}
-          <Route path="/" element={<Layout />}>
-            {/* index: index route(여기서는 기본 자식 라우트를 의미) */}
-            <Route index element={<Main />}/>
-            {/* <Route path="detail" element={<ProductDetail />}/> */}
-            {/* Quiz: 상품별 상세페이지 여러 개를 라우팅하려면? URL 파라미터 사용
-              예: /detail/1로 접속하면 productId에 1이 담기도록 설정 */}
-              <Route path="detail/:productId" element={<ProductDetail />}/>
-            <Route path="cart" element={<Cart />}/>
-            {/* 매칭되는 페이지가 없을때 보여줌 */}
-            <Route path="*" element={<div>페이지가 존재하지 않습니다.</div>}/>
-          </Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* index: index route(여기서는 기본 자식 라우트를 의미) */}
+          <Route index element={<Main />} />
+          {/* <Route path="detail" element={<ProductDetail />} /> */}
+          {/* Quiz: 상품별 상세페이지 여러 개를 라우팅하려면? URL 파라미터 사용
+            예: /detail/1로 접속하면 productId에 1이 담기도록 설정 */}
+          <Route path="detail/:productId" element={<ProductDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<div>페이지가 존재하지 않습니다.</div>} />
+        </Route>
+      </Routes>
 
-        {/* 토스트 컨테이너 하나로 재사용
-          만약 다른 옵션의 토스트를 쓰고 싶다면 컨테이너 여러 개 사용 */}
-        <ToastContainer 
-          position="bottom-right"
-          autoClose={1000}
-          pauseOnFocusLoss={false}
-          theme="dark"
-        />
-      </BrowserRouter>
+      {/* 토스트 컨테이너 하나로 재사용
+        만약 다른 옵션의 토스트를 쓰고 싶다면 컨테이너 여러 개 사용 */}
+      <ToastContainer 
+        position="bottom-right"
+        autoClose={3000}
+        pauseOnFocusLoss={false}
+        theme="dark"
+      />
     </>
   );
 }
